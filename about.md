@@ -4,6 +4,7 @@ title: about
 permalink: /about/
 ---
 
+主攻后端，时不时搞搞前端，非标准理科男一枚。
 
 博客网站：[wthfeng的个人博客](http://wangtonghe.github.io)
 

@@ -75,20 +75,14 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
     {
-        title: "csdn wthfeng",
-        href: "http://blog.csdn.net/wthfeng"
+        title: "hux blog",
+        href: "https://huangxuan.me/"
     }
-    # ,{
-    #     title: "Foo",
-    #     href: "#"
-    # },{
-    #     title: "Bar",
-    #     href: "#"
-    # },{
-    #     title: "Example Friends",
-    #     href: "#"
-    # },{
-    #     title: "It helps SEO",
-    #     href: "#"
-    # }
+    ,{
+        title: "黑客派",
+        href: "https://hacpai.com/"
+    },{
+        title: "掘金",
+        href: "https://juejin.im"
+    }
 ]
