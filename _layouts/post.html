@@ -1,0 +1,189 @@
+--- 
+layout: default 
+---
+
+<!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        {% for tag in page.tags %}
+                        <a class="tag" href="{{ site.baseurl }}/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a> {% endfor %}
+                    </div>
+                    <h1>{{ page.title }}</h1>
+                    {% comment %} always create a h2 for keeping the margin , Hux {% endcomment %} {% comment %} if page.subtitle {% endcomment %}
+                    <h2 class="subheading">{{ page.subtitle }}</h2>
+                    {% comment %} endif {% endcomment %}
+                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                {{ content }}
+
+                <hr>
+
+
+
+
+                <ul class="pager">
+                    {% if page.previous.url %}
+                    <li class="previous">
+                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+                    </li>
+                    {% endif %} {% if page.next.url %}
+                    <li class="next">
+                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+
+
+                <div id="SOHUCS" sid="{{page.url}}"></div>
+
+
+
+
+            </div>
+
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                {% if site.featured-tags %}
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <!--<div class="tags">
+                        <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                                    {{ tag[0] }}
+                    </div>-->
+                </section>
+                {% endif %}
+
+                <!-- Friends Blog -->
+                {% if site.friends %}
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    {% for friend in site.friends %}
+                    <li><a href="{{friend.href}}">{{friend.title}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- 畅言 -->
+<!--PC和WAP自适应版-->
+
+<script type="text/javascript">
+    (function() {
+        var appid = 'cysYtxu5s';
+        var conf = 'prod_9eb6820846b175c0f517ec265f3d1391';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+        } else {
+            var loadJs = function(d, a) {
+                var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                var b = document.createElement("script");
+                b.setAttribute("type", "text/javascript");
+                b.setAttribute("charset", "UTF-8");
+                b.setAttribute("src", d);
+                if (typeof a === "function") {
+                    if (window.attachEvent) {
+                        b.onreadystatechange = function() {
+                            var e = b.readyState;
+                            if (e === "loaded" || e === "complete") {
+                                b.onreadystatechange = null;
+                                a()
+                            }
+                        }
+                    } else {
+                        b.onload = a
+                    }
+                }
+                c.appendChild(b)
+            };
+            loadJs("http://changyan.sohu.com/upload/changyan.js", function() {
+                window.changyan.api.config({
+                    appid: appid,
+                    conf: conf
+                })
+            });
+        }
+    })();
+</script>
+
+{% if site.anchorjs %}
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document,
+            t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) {
+            o.addEventListener('load', function(e) {
+                c(null, e);
+            }, false);
+        }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+        anchors.options = {
+            visible: 'always',
+            placement: 'right',
+            icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    
+    @media all and (min-width: 800px) {
+        .anchorjs-link {
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top: -0.1em;
+        }
+    }
+</style>
+{% endif %}
