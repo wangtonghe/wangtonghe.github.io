@@ -3,6 +3,7 @@ layout: post
 title:  "Servlet工作机制解析"
 date:   2017-04-30 08:12:00 +0800
 categories: javaweb servlet
+header-img: img/posts/servlet/servlet-cover.jpg
 tags:
  - javaweb
  - servlet
