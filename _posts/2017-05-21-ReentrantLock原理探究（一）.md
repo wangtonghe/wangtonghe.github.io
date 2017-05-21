@@ -2,11 +2,11 @@
 layout: post
 title:  "ReentrantLock原理探究（一）"
 date:   2017-05-21 10:21:00 +0800
-categories: java Lock AQS
+categories: java AQS 并发与多线程
 header-img: img/posts/java/reentrantLock-cover.jpg
 tags:
  - java
- - Lock
+ - 并发与多线程
  - AQS
 ---
 
