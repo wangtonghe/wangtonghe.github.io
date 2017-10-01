@@ -3,7 +3,7 @@ layout: post
 title:  "HttpUrlConnection类体系解析"
 date:   2017-10-01 15:00:00 +0800
 categories: java http
-header-img: img/posts/javascript/choose-module.jpg
+header-img: img/posts/java/http.jpg
 tags:
  - http
  - java
