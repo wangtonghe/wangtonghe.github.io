@@ -56,7 +56,7 @@ wait()方法可以使线程进入等待状态，而notify()可以使等待的状
 
 public class ThreadTest {
 
-    static final Object obj = new Object();
+    static final Object obj = new Object();  //对象锁
 
     private static boolean flag = false;
 
@@ -140,9 +140,9 @@ wait flag 2:true <br/>
 
 理解了输出结果的顺序，也就明白了wait/notify的基本用法。有以下几点需要知道：
 
-1. 在示例中没有体现但很重要的是，**wait/notify方法的调用必须处在该对象的锁（Monitor）中，也即，在调用这些方法时首先需要获得该对象的锁。**否则会爬出IllegalMonitorStateException异常。
+1. 在示例中没有体现但很重要的是，**wait/notify方法的调用必须处在该对象的锁（Monitor）中，也即，在调用这些方法时首先需要获得该对象的锁。**否则会抛出IllegalMonitorStateException异常。
 2. 从输出结果来看，在生产者调用notify()后，消费者并没有立即被唤醒，而是等到生产者退出同步块后才唤醒执行。（这点其实也好理解，synchronized同步方法（块）同一时刻只允许一个线程在里面，生产者不退出，消费者也进不去）
-3. 注意，消费者被唤醒后是从wait()方法（被阻塞的地方）后面执行，而不是重新从同步块开头。
+3. 注意，消费者被唤醒后是从wait()方法（被阻塞的地方）后面执行，而不是重新从同步块开始。
 
 
 ## 深入了解
