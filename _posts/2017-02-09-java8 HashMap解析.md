@@ -156,7 +156,7 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
 
 >  i = (n - 1) & hash
 
-n是HashMap底层数组的长度，当n为2的次方时，`(n-1)&hash`等价于`n%hash`,可确保得到的值落在数组索引范围内。
+n是HashMap底层数组的长度，当n为2的次方时，`(n-1)&hash`等价于`hash%n`,可确保得到的值落在数组索引范围内。
 
 例如，对`hello`进行哈希计算为`99163451`。进行索引计算为`11`,即(`hello`,`world`)会落在数组索引为11的位置。
 
