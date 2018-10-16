@@ -80,7 +80,7 @@ theme: next
 deploy:
   type: git
   repo: git@github.com:wangtonghe/wangtonghe.github.io.git  #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
-  branch: master #published
+  branch: hexo_blog #published
   
 
 
