@@ -32,7 +32,7 @@ tags:
 |TERMINATED|终止状态，线程运行结束|
 
 
-![](http://blog.wthfeng.com/img/posts/java/thread/java-thread-status.png)
+![](http://img.wthfeng.com/img/posts/java/thread/java-thread-status.png)
 
 
 
@@ -151,7 +151,7 @@ wait flag 2:true <br/>
 
 由前面线程的状态转化图可知，当调用wait()方法后，线程会进入WAITING(等待状态)，后续被notify()后，并没有立即被执行，而是进入等待获取锁的阻塞队列。
 
-![](http://blog.wthfeng.com/img/posts/java/thread/java-wait-notify.png)
+![](http://img.wthfeng.com/img/posts/java/thread/java-wait-notify.png)
 
 
 对于每个对象来说，都有自己的等待队列和阻塞队列。以前面的生产者、消费者为例，我们拿obj对象作为对象锁，配合图示。内部流程如下
