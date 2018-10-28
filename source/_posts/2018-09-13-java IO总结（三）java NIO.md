@@ -66,7 +66,7 @@ Channel 表示通道，与流有一些类似，用于在字节缓冲区和位于
 看其继承图
 
 
-![这里写图片描述](https://img-blog.csdn.net/20180913212203202?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d0aGZlbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![这里写图片描述](http://img.wthfeng.com/img/wthfeng/java/io/20180913212203202.jpeg)
 
 FileChannel可通过FileInputStream或FileOutputStream或RandomAccessFile对象上调用getChannel()方法来获取。
 
