@@ -1,0 +1,13 @@
+User-agent: * 
+Allow: /
+Allow: /archives/
+Disallow: /about/
+Disallow: /categories/
+Disallow: /js/
+Disallow: /lib/
+Disallow: /css/
+Disallow: /images/
+
+
+Sitemap: http://blog.wthfeng.com/sitemap.xml
+Sitemap: http://blog.wthfeng.com/baidusitemap.xml
