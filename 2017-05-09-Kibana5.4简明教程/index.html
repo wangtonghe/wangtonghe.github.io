@@ -97,31 +97,31 @@
 <meta name="keywords" content="elastic,kibana,译文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kibana 5.4简明教程">
-<meta property="og:url" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/index.html">
+<meta property="og:url" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/index.html">
 <meta property="og:site_name" content="梧桐和风的博客">
 <meta property="og:description" content="本文翻译自Kibana5.4版本官方教程。文章首发于我的个人博客网站梧桐和风的博客,欢迎关注。  开始想要得到一些关于Kibana的实际经验吗，下面教程会叫你怎样做。  向Elasticsearch导入一些样本数据 定义一个索引模式 用Discover搜索样本数据 为样本数据建立visualizations【可视化图表组件】 将可视化数据汇集到Dashboard  开始之前，你必须确保已成功安装">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-discover.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-discover-2.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-discover-3.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-landing.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-wizard-step-1.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-wizard-step-2.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-pie-1.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-pie-2.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-pie-3.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-bar-2.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-bar-3.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-timepicker.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-map-2.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-map-3.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-md-2.png">
-<meta property="og:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-dashboard.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-discover.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-discover-2.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-discover-3.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-landing.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-wizard-step-1.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-wizard-step-2.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-pie-1.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-pie-2.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-pie-3.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-bar-2.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-bar-3.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-timepicker.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-map-2.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-map-3.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-visualize-md-2.png">
+<meta property="og:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-dashboard.png">
 <meta property="og:updated_time" content="2018-10-16T13:41:30.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kibana 5.4简明教程">
 <meta name="twitter:description" content="本文翻译自Kibana5.4版本官方教程。文章首发于我的个人博客网站梧桐和风的博客,欢迎关注。  开始想要得到一些关于Kibana的实际经验吗，下面教程会叫你怎样做。  向Elasticsearch导入一些样本数据 定义一个索引模式 用Discover搜索样本数据 为样本数据建立visualizations【可视化图表组件】 将可视化数据汇集到Dashboard  开始之前，你必须确保已成功安装">
-<meta name="twitter:image" content="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-discover.png">
+<meta name="twitter:image" content="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/img/posts/kibana5.4/tutorial-discover.png">
 
 
 
@@ -151,7 +151,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/">
+  <link rel="canonical" href="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/">
 
 
 
@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/">
+    <link itemprop="mainEntityOfPage" href="https://blog.wthfeng.com/2017-05-09-Kibana5.4简明教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tonghe Wang">
