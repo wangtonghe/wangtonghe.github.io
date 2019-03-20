@@ -113,9 +113,9 @@
             
             <tag> io </tag>
             
-            <tag> 总结 </tag>
-            
             <tag> nio </tag>
+            
+            <tag> 总结 </tag>
             
         </tags>
       
@@ -706,9 +706,9 @@
             
             <tag> java </tag>
             
-            <tag> javaweb </tag>
-            
             <tag> servlet </tag>
+            
+            <tag> javaweb </tag>
             
         </tags>
       
@@ -735,9 +735,9 @@
             
             <tag> java </tag>
             
-            <tag> servlet </tag>
-            
             <tag> latke </tag>
+            
+            <tag> servlet </tag>
             
         </tags>
       
@@ -771,31 +771,6 @@
     
     
     <entry>
-      <title>node学习笔记</title>
-      <link href="/2017-03-26-node%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>/2017-03-26-node%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[<h2 id="node笔记"><a href="#node笔记" class="headerlink" title="node笔记"></a>node笔记</h2><ol><li>每个文件就是一个模块，文件路径就是模块名，每个模块都有<code>require</code>、<code>exports</code>、<code>module</code>三个预先定义好的变量。</li><li><code>require</code>函数用于在当期模块加载使用其他模块，js后缀可省略。</li></ol><p>模块路径解析规则</p><ol><li>内置模块，直接在require中写模块名，如<code>require(&#39;fs&#39;)</code>.</li><li>node_modules目录，node项目有一个专门储存模块的目录，为node_modules。如<code>require(&#39;express&#39;)</code>,需保证项目node_modules目录有express模块。</li></ol><h3 id="路由定义"><a href="#路由定义" class="headerlink" title="路由定义"></a>路由定义</h3><blockquote><p>app.METHOD(path,[callback],callback)</p></blockquote><p>METHOD是一个HTTP请求方法。path是服务器路径，callback是当路由匹配时要执行的函数。如<code>app.post(&#39;/&#39;,function(){});</code>将匹配请求根目录的post请求。</p><p>app.all()是一个特殊路由方法，会匹配所有请求。用于在某一路径加载中间件。</p><h4 id="路由路径"><a href="#路由路径" class="headerlink" title="路由路径"></a>路由路径</h4><p>可使用字符串或正则匹配</p><h4 id="路由处理函数"><a href="#路由处理函数" class="headerlink" title="路由处理函数"></a>路由处理函数</h4><p>可以为请求提供多个处理函数，只有最后一个处理函数可以返回结果（调用res方法向客户端返回响应），其他需使用next()调用其他路由。</p><p>也可直接指定路由处理函数数组处理。</p><h4 id="响应方法"><a href="#响应方法" class="headerlink" title="响应方法"></a>响应方法</h4><p>中间件是一个函数。用于对请求进行处理。如果中间件没有终结请求，则必须调用next()函数</p><ol><li>应用级中间件<br>绑定到app对象，使用app.use或app.METHOD,</li></ol>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 没有挂载路径的中间件，应用的每个请求都会执行该中间件</span></span><br><span class="line"> app.use(<span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Time:'</span>, <span class="built_in">Date</span>.now());</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 挂载至 /user/:id 的中间件，任何指向 /user/:id 的请求都会执行它</span></span><br><span class="line">app.use(<span class="string">'/user/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Request Type:'</span>, req.method);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 路由和句柄函数(中间件系统)，处理指向 /user/:id 的 GET 请求</span></span><br><span class="line">app.get(<span class="string">'/user/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'USER'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>  使用 next(‘route’)方法跳过中间件栈跳过剩余中间件。可将控制权交给下一个路由。注意： 它只对 <code>app.VERB()</code>和<code>router.VERB()</code>有用。</p><h3 id="错误处理中间件"><a href="#错误处理中间件" class="headerlink" title="错误处理中间件"></a>错误处理中间件</h3><p>错误处理中间件必须使用4个参数，否则会被识别为普通中间件。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(err.stack);</span><br><span class="line">  res.status(<span class="number">500</span>).send(<span class="string">'Something broke!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果向<code>next()</code>传入参数，除‘route’外，Express会认为当前请求存在错误，会忽略所有中间件函数，去寻找异常处理的中间件。</p><p>next()和next(err) 类似于Promise.resolve()和Promise.reject()。</p><h3 id="内置中间件"><a href="#内置中间件" class="headerlink" title="内置中间件"></a>内置中间件</h3><p>express.static(root,[options])</p><p>Express唯一内置中间件。负责托管静态资源。其他中间件均为第三方中间件。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> node </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> node </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Linux与Mac系统用SCP互传文件</title>
       <link href="/2017-03-26-Linux%E4%B8%8EMac%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6/"/>
       <url>/2017-03-26-Linux%E4%B8%8EMac%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6/</url>
@@ -817,6 +792,31 @@
             <tag> scp </tag>
             
             <tag> mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>node学习笔记</title>
+      <link href="/2017-03-26-node%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>/2017-03-26-node%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="node笔记"><a href="#node笔记" class="headerlink" title="node笔记"></a>node笔记</h2><ol><li>每个文件就是一个模块，文件路径就是模块名，每个模块都有<code>require</code>、<code>exports</code>、<code>module</code>三个预先定义好的变量。</li><li><code>require</code>函数用于在当期模块加载使用其他模块，js后缀可省略。</li></ol><p>模块路径解析规则</p><ol><li>内置模块，直接在require中写模块名，如<code>require(&#39;fs&#39;)</code>.</li><li>node_modules目录，node项目有一个专门储存模块的目录，为node_modules。如<code>require(&#39;express&#39;)</code>,需保证项目node_modules目录有express模块。</li></ol><h3 id="路由定义"><a href="#路由定义" class="headerlink" title="路由定义"></a>路由定义</h3><blockquote><p>app.METHOD(path,[callback],callback)</p></blockquote><p>METHOD是一个HTTP请求方法。path是服务器路径，callback是当路由匹配时要执行的函数。如<code>app.post(&#39;/&#39;,function(){});</code>将匹配请求根目录的post请求。</p><p>app.all()是一个特殊路由方法，会匹配所有请求。用于在某一路径加载中间件。</p><h4 id="路由路径"><a href="#路由路径" class="headerlink" title="路由路径"></a>路由路径</h4><p>可使用字符串或正则匹配</p><h4 id="路由处理函数"><a href="#路由处理函数" class="headerlink" title="路由处理函数"></a>路由处理函数</h4><p>可以为请求提供多个处理函数，只有最后一个处理函数可以返回结果（调用res方法向客户端返回响应），其他需使用next()调用其他路由。</p><p>也可直接指定路由处理函数数组处理。</p><h4 id="响应方法"><a href="#响应方法" class="headerlink" title="响应方法"></a>响应方法</h4><p>中间件是一个函数。用于对请求进行处理。如果中间件没有终结请求，则必须调用next()函数</p><ol><li>应用级中间件<br>绑定到app对象，使用app.use或app.METHOD,</li></ol>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 没有挂载路径的中间件，应用的每个请求都会执行该中间件</span></span><br><span class="line"> app.use(<span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Time:'</span>, <span class="built_in">Date</span>.now());</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 挂载至 /user/:id 的中间件，任何指向 /user/:id 的请求都会执行它</span></span><br><span class="line">app.use(<span class="string">'/user/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Request Type:'</span>, req.method);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 路由和句柄函数(中间件系统)，处理指向 /user/:id 的 GET 请求</span></span><br><span class="line">app.get(<span class="string">'/user/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'USER'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>  使用 next(‘route’)方法跳过中间件栈跳过剩余中间件。可将控制权交给下一个路由。注意： 它只对 <code>app.VERB()</code>和<code>router.VERB()</code>有用。</p><h3 id="错误处理中间件"><a href="#错误处理中间件" class="headerlink" title="错误处理中间件"></a>错误处理中间件</h3><p>错误处理中间件必须使用4个参数，否则会被识别为普通中间件。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(err.stack);</span><br><span class="line">  res.status(<span class="number">500</span>).send(<span class="string">'Something broke!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果向<code>next()</code>传入参数，除‘route’外，Express会认为当前请求存在错误，会忽略所有中间件函数，去寻找异常处理的中间件。</p><p>next()和next(err) 类似于Promise.resolve()和Promise.reject()。</p><h3 id="内置中间件"><a href="#内置中间件" class="headerlink" title="内置中间件"></a>内置中间件</h3><p>express.static(root,[options])</p><p>Express唯一内置中间件。负责托管静态资源。其他中间件均为第三方中间件。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> node </tag>
             
         </tags>
       
